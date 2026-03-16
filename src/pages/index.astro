@@ -1,0 +1,125 @@
+---
+// Parte logica: qui puoi definire i dati dei tuoi quadri
+const iMieiQuadri = [
+	{ titolo: "Primo Quadro", desc: "Descrizione dell'opera", img: "/quadri/quadro1.PNG" },
+	{ titolo: "Secondo Quadro", desc: "Un altro esperimento", img: "/quadri/quadro2.PNG" },
+	{ titolo: "Secondo Quadro", desc: "Un altro esperimento", img: "/quadri/quadro3.PNG" },
+	{ titolo: "Secondo Quadro", desc: "Un altro esperimento", img: "/quadri/quadro4.PNG" },
+	{ titolo: "Secondo Quadro", desc: "Un altro esperimento", img: "/quadri/quadro5.PNG" },
+];
+---
+
+<html lang="it">
+	<head>
+		<meta charset="utf-8" />
+		<title>Galleria Personale</title>
+
+		<style>
+			body {
+				background-color: #f8f8f8;
+				font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				margin: 0;
+			}
+
+			.gallery-container {
+				padding: 20px;
+				/* Determina il numero di colonne */
+				column-count: 3;
+				/* Spazio tra le colonne */
+				column-gap: 20px;
+			}
+
+			/* Responsive: meno colonne su schermi piccoli */
+			@media (max-width: 1000px) {
+				.gallery-container { column-count: 2; }
+			}
+			@media (max-width: 600px) {
+				.gallery-container { column-count: 1; }
+			}
+
+			.card {
+				/* Fondamentale: impedisce alla card di spezzarsi tra due colonne */
+				break-inside: avoid;
+				margin-bottom: 20px;
+				background: white;
+				border: 1px solid #eee;
+				padding: 10px;
+				transition: transform 0.3s ease-in-out;
+			}
+
+			.card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+			}
+
+			.card img {
+				width: 100%;
+				height: auto; /* Mantiene le proporzioni originali del quadro */
+				display: block;
+			}
+
+			.card h2 {
+				font-size: 1rem;
+				margin: 10px 0 5px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+
+
+			.main-nav {
+				display: flex;
+				justify-content: center;
+				gap: 30px;
+				padding: 20px;
+				background: white;
+				border-bottom: 1px solid #eee;
+				position: sticky; /* Il menu resta in alto mentre scorri */
+				top: 0;
+				z-index: 100;
+			}
+
+			.main-nav a {
+				text-decoration: none;
+				color: #666;
+				font-weight: 500;
+				text-transform: uppercase;
+				font-size: 0.9rem;
+				letter-spacing: 1px;
+				transition: color 0.3s ease;
+			}
+
+			.main-nav a:hover {
+				color: #000;
+			}
+
+			.main-nav a.active {
+				color: #000;
+				border-bottom: 2px solid #000;
+			}
+
+
+		</style>
+	</head>
+
+	<body>
+		<nav class="main-nav">
+			<a href="/" class="active">Galleria</a>
+			<a href="/studio1">Il Progetto (Testo)</a>
+		</nav>
+
+
+		<header style="text-align: center; padding: 40px 0;">
+			<h1>Portfolio Artistico</h1>
+		</header>
+
+		<main class="gallery-container">
+			{iMieiQuadri.map((opera) => (
+			<article class="card">
+				<img src={opera.img} alt={opera.titolo} />
+				<h2>{opera.titolo}</h2>
+				<p style="font-size: 0.8rem; color: #666;">{opera.desc}</p>
+			</article>
+			))}
+		</main>
+	</body>
+</html>
