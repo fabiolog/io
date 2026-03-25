@@ -147,7 +147,7 @@ const fotoPresenza = [
   transform: translate(-50%, -50%);
   font-family: 'Jester', serif; /* Oppure un font molto bold */
   font-size: 10vw; /* Dimensione enorme basata sulla larghezza dello schermo */
-  color: #dddddd; 
+  color: #dddddd49; 
   white-space: nowrap;
   pointer-events: none; /* Importante: il mouse deve "passarci attraverso" */
   z-index: -1;
@@ -171,6 +171,31 @@ const fotoPresenza = [
   }
 
 
+/* ... altri stili ... */
+
+  .photo-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #eee;
+    /* Impostazioni per il Fade iniziale */
+    opacity: 0;
+    transform: translateY(20px); /* Parte leggermente più in basso */
+    animation: fadeEntrata 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeEntrata {
+    to {
+      opacity: 1;
+      transform: translateY(0); /* Arriva alla posizione corretta */
+    }
+  }
+
+  /* Mantieni l'effetto hover che abbiamo creato prima */
+  .photo-wrapper:hover img {
+    transform: scale(1.03) rotate(0.5deg);
+  }
+
+
     </style>
   </head>
   <body>
@@ -182,8 +207,13 @@ const fotoPresenza = [
     <h1>Presenza</h1>
 
 <div class="grid-container">
-  {fotoPresenza.map((foto) => (
-    <div class="photo-wrapper" data-tag={foto.tag}> <img src={foto.src} alt={foto.alt} />
+  {fotoPresenza.map((foto, i) => (
+    <div 
+      class="photo-wrapper" 
+      data-tag={foto.tag}
+      style={`animation-delay: ${i * 0.2}s;`} 
+    >
+      <img src={foto.src} alt={foto.alt} />
       <div class="caption">{foto.desc}</div>
     </div>
   ))}
@@ -191,11 +221,7 @@ const fotoPresenza = [
 
     <div class="description-area">
       <p>Presenza è l’illusione di abitare il luogo. <br>
-      
-      
-      “Presenza” non significa solo “uomo vicino”, ma “uomo che
-domina la scena col suo sguardo”. <br> Sei vicino scala 1:100. Vedi la materia, vedi l’animale, lo “possiedi” con lo
-sguardo.</p>
+</p>
     </div>
 
     <div class="timeline-container">
@@ -209,8 +235,8 @@ sguardo.</p>
 
 
 <script>
-  const giantText = document.getElementById('bg-text-giant');
-  const altText = document.getElementById('bg-alt-left');
+  const giantText = document.getElementById('bg-text-giant')!;
+  const altText = document.getElementById('bg-alt-left')!;
   const photoWrappers = document.querySelectorAll('.photo-wrapper');
 
   photoWrappers.forEach((wrapper) => {
