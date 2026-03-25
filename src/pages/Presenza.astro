@@ -1,10 +1,10 @@
 ---
 // Qui potresti definire i dati delle 4 foto in futuro
 const fotoPresenza = [
-  { src: '/foto/P1.jpg', alt: 'Dettaglio 1', desc: 'Frammento di presenza A' },
-  { src: '/foto/P2.jpg', alt: 'Dettaglio 2', desc: 'Frammento di presenza B' },
-  { src: '/foto/P3.jpg', alt: 'Dettaglio 3', desc: 'Frammento di presenza C' },
-  { src: '/foto/P4.jpg', alt: 'Dettaglio 4', desc: 'Frammento di presenza D' },
+  { src: '/foto/P1.jpg', alt: 'P/1', desc: 'Litli-Hrútur, Fagradalsfjall - 2023', tag: '[00°36’57”N 00°59’34”W]'  },
+  { src: '/foto/P2.jpg', alt: 'P/2', desc: 'Húnaflói / Steingrímsfjörðu - 2020', tag: '[63°00’57”N 19°59’34”W]'  },
+  { src: '/foto/P3.jpg', alt: 'P/3', desc: 'Seljalandsfoss - 2021', tag: '[63°36’57”N 19°59’34”W]' },
+  { src: '/foto/P4.jpg', alt: 'P/4', desc: 'Fjallsarlon - 2020' ,tag: '[63°36’57”N 19°59’34”W]' },
 ];
 ---
 
@@ -84,9 +84,10 @@ const fotoPresenza = [
         bottom: 0;
         left: 0;
         width: 100%;
-        background: rgba(255, 242, 65, 0.7);
+        background: #ffd700;
         color: #252525;
         padding: 10px;
+        font-family: 'Jester';
         font-size: 0.8rem;
         text-align: center;
         opacity: 0;
@@ -103,7 +104,7 @@ const fotoPresenza = [
         margin-top: 30px;
         max-width: 600px;
         text-align: center;
-        font-family: 'Georgia', serif;
+        font-family: 'Inter', serif;
         line-height: 1.6;
         color: #333;
       }
@@ -134,24 +135,67 @@ const fotoPresenza = [
       .timeline-line {
         width: 100%;
         height: 1px;
-        background-color: #d4c58d;
+        background-color: #ffd700;
       }
+
+
+/* stile del testo ghost sullo sfondo*/
+.bg-text-style {
+  position: fixed;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Jester', serif; /* Oppure un font molto bold */
+  font-size: 10vw; /* Dimensione enorme basata sulla larghezza dello schermo */
+  color: #dddddd; 
+  white-space: nowrap;
+  pointer-events: none; /* Importante: il mouse deve "passarci attraverso" */
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  text-transform: uppercase;
+}
+.bg-alt-style {
+    position: fixed;
+    top: 50%;
+    left: 5%; /* Allineato a sinistra con un po' di margine */
+    transform: translateY(-50%);
+    font-family: 'Jester', serif;
+    font-size: 15vw; /* Leggermente più piccolo del tag centrale */
+    color: #ffd700; /* Usiamo il giallo spento con trasparenza */
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: -2; /* Ancora più sotto del tag centrale */
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    text-transform: uppercase;
+  }
+
+
     </style>
   </head>
   <body>
+  
+  
+  <div id="bg-text-giant" class="bg-text-style"></div> <!-- blocco ghost per text grigio  sullo sfondo -->
+<div id="bg-alt-left" class="bg-alt-style"></div> <!-- blocco del codice foto sullos fondo-->
+
     <h1>Presenza</h1>
 
-    <div class="grid-container">
-      {fotoPresenza.map((foto) => (
-        <div class="photo-wrapper">
-          <img src={foto.src} alt={foto.alt} />
-          <div class="caption">{foto.desc}</div>
-        </div>
-      ))}
+<div class="grid-container">
+  {fotoPresenza.map((foto) => (
+    <div class="photo-wrapper" data-tag={foto.tag}> <img src={foto.src} alt={foto.alt} />
+      <div class="caption">{foto.desc}</div>
     </div>
+  ))}
+</div>
 
     <div class="description-area">
-      <p>Questa sezione esplora il primo momento della scala 1:10000. La presenza come traccia tangibile, il dettaglio che emerge dal vuoto.</p>
+      <p>Presenza è l’illusione di abitare il luogo. <br>
+      
+      
+      “Presenza” non significa solo “uomo vicino”, ma “uomo che
+domina la scena col suo sguardo”. <br> Sei vicino scala 1:100. Vedi la materia, vedi l’animale, lo “possiedi” con lo
+sguardo.</p>
     </div>
 
     <div class="timeline-container">
@@ -162,5 +206,41 @@ const fotoPresenza = [
       </div>
       <div class="timeline-line"></div>
     </div>
+
+
+<script>
+  const giantText = document.getElementById('bg-text-giant');
+  const altText = document.getElementById('bg-alt-left');
+  const photoWrappers = document.querySelectorAll('.photo-wrapper');
+
+  photoWrappers.forEach((wrapper) => {
+    const img = wrapper.querySelector('img');
+
+    wrapper.addEventListener('mouseenter', () => {
+      // 1. Gestione Tag Centrale
+      const customTag = wrapper.getAttribute('data-tag'); 
+      giantText.textContent = customTag;
+      giantText.style.opacity = '1';
+      giantText.style.transform = 'translate(-50%, -50%) scale(1.1)';
+
+      // 2. Gestione ALT a Sinistra
+      const photoAlt = img.getAttribute('alt');
+      altText.textContent = photoAlt;
+      altText.style.opacity = '1';
+      altText.style.left = '2%'; // Si sposta leggermente verso l'esterno entrando
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      giantText.style.opacity = '0';
+      giantText.style.transform = 'translate(-50%, -50%) scale(1)';
+
+      altText.style.opacity = '0';
+      altText.style.left = '5%'; // Torna alla posizione originale
+    });
+  });
+</script>
+
+
+
   </body>
 </html>
