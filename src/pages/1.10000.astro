@@ -9,6 +9,23 @@
     <meta name="viewport" content="width=device-width" />
     <title>Scala 1:10000 - Landing Page</title>
     <style>
+
+@font-face {
+    font-family: 'Jester';
+    src: url('src/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+@font-face {
+    font-family: 'Inter';
+    src: url('src/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+
       body {
         background-color: #f8f8f8; /* Sfondo bianco sporco */
         margin: 0;
@@ -21,10 +38,12 @@
       }
 
       h1 {
-        font-size: 3rem;
-        margin-bottom: 2rem;
-        /* Aggiungi qui lo stile per il font scelto in seguito */
-      }
+          font-family: 'Jester', serif; /* Applichiamo il tuo font */
+          font-size: 4rem;
+          letter-spacing: 2px;
+          margin-bottom: 2rem;
+          color: #1a1a1a;
+        }
 
       img {
         width: 50%; /* Regola la larghezza dell'immagine */
@@ -42,27 +61,91 @@
           opacity: 1;
         }
       }
+      .timeline-container {
+    margin-top: 2rem;
+    width: 80%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-      button {
-        background-color: #333; /* Colore del bottone */
-        color: white;
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        margin-top: 2rem;
-        transition: background-color 0.3s ease;
-      }
+  .timeline-labels {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Distribuisce le 3 parole */
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
 
-      button:hover {
-        background-color: #555; /* Colore al passaggio del mouse */
-      }
+  .timeline-labels span {
+    font-family: sans-serif; /* Font pulito per le etichette */
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+  }
+
+  .timeline-line {
+    width: 100%;
+    height: 1px;
+    background-color: #d4c58d; /* Giallo spento/ocra */
+    margin-bottom: 20px;
+  }
+
+  .timeline-text {
+    font-family: 'Inter', serif;
+    font-size: 0.9rem;
+    color: #444;
+    text-align: center;
+    line-height: 1.7;
+    max-width: 900px;
+  }
+
+button {
+  background: transparent;
+  color: #1a1a1a;
+  padding: 12px 40px;
+  border: 1px solid #1a1a1a;
+  font-family: sans-serif; /* Un font pulito per contrasto */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.4s ease;
+}
+
+button:hover {
+  background-color: #1a1a1a;
+  color: #f4f1ea;
+}
     </style>
   </head>
   <body>
     <h1>Scala 1:10000</h1>
-    <img src="/percorso/della/tua/foto.jpg" alt="Foto centrale del progetto" />
-    <button>Inizia</button>
+    <img src="/public/foto/M3.jpg" alt="Foto centrale del progetto" />
+    <a href="/Presenza"><button>Inizia</button></a>
+    <div class="timeline-container">
+     <p class="timeline-text">
+     Siamo abituati a misurare il mondo in base alla nostra statura, ai nostri passi, alla nostra capacità di
+occupare lo spazio.<br>
+In Islanda, questa metrica fallisce.<br>
+Qui la natura non dialoga con l’uomo: lo tollera come un rumore di fondo, una distrazione millimetrica.<br>
+SCALA 1:10.000 è un rilievo della nostra sparizione seguendo un percorso mentale che parte dalla palese Presenza, 
+passa per la misura intesa come scala del mondo, per concludersi con l'assenza senza riferimenti</p>
+  <div class="timeline-labels">
+    <span>Presenza</span>
+    <span>Misura</span>
+    <span>Assenza</span>
+  </div>
+  <div class="timeline-line"></div>
+  <p class="timeline-text">
+    <b>Qui non c’è epica, non c ’è avventura, non c'è colore.</b><br>
+
+Queste immagini, stampate in originale su carta povera e affisse come manifesti di un cantiere,<br> documentano
+il momento in cui smettiamo di essere protagonisti per diventare, finalmente, irrilevanti.<br> Per certi versi una sorta di liberazione.
+  </p>
+</div>
   </body>
 </html>
