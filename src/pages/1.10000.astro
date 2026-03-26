@@ -10,20 +10,20 @@
     <title>Scala 1:10000 - Landing Page</title>
     <style>
 
-@font-face {
-    font-family: 'Jester';
-    src: url('src/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-@font-face {
-    font-family: 'Inter';
-    src: url('src/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: 'Jester';
+        src: url('io/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype'); /* public come se non esistesse */
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+    @font-face {
+        font-family: 'Inter';
+        src: url('io/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
   
 
       body {
@@ -61,65 +61,67 @@
           opacity: 1;
         }
       }
+
+
       .timeline-container {
-    margin-top: 2rem;
-    width: 80%;
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+        margin-top: 2rem;
+        width: 80%;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-  .timeline-labels {
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* Distribuisce le 3 parole */
-    margin-bottom: 8px;
-    margin-top: 8px;
-  }
+      .timeline-labels {
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* Distribuisce le 3 parole */
+        margin-bottom: 8px;
+        margin-top: 8px;
+      }
 
-  .timeline-labels span {
-    font-family: sans-serif; /* Font pulito per le etichette */
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #666;
-  }
+      .timeline-labels span {
+        font-family: sans-serif; /* Font pulito per le etichette */
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #666;
+      }
 
-  .timeline-line {
-    width: 100%;
-    height: 1px;
-    background-color: #d4c58d; /* Giallo spento/ocra */
-    margin-bottom: 20px;
-  }
+      .timeline-line {
+        width: 100%;
+        height: 1px;
+        background-color: #d4c58d; /* Giallo spento/ocra */
+        margin-bottom: 20px;
+      }
 
-  .timeline-text {
-    font-family: 'Inter', serif;
-    font-size: 0.9rem;
-    color: #444;
-    text-align: center;
-    line-height: 1.7;
-    max-width: 900px;
-  }
+      .timeline-text {
+        font-family: 'Inter', serif;
+        font-size: 0.9rem;
+        color: #444;
+        text-align: center;
+        line-height: 1.7;
+        max-width: 900px;
+      }
 
-button {
-  background: transparent;
-  color: #1a1a1a;
-  padding: 12px 40px;
-  border: 1px solid #1a1a1a;
-  font-family: sans-serif; /* Un font pulito per contrasto */
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  margin-top: 2rem;
-  transition: all 0.4s ease;
-}
+      button {
+        background: transparent;
+        color: #1a1a1a;
+        padding: 12px 40px;
+        border: 1px solid #1a1a1a;
+        font-family: sans-serif; /* Un font pulito per contrasto */
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 0.8rem;
+        cursor: pointer;
+        margin-top: 2rem;
+        transition: all 0.4s ease;
+      }
 
-button:hover {
-  background-color: #1a1a1a;
-  color: #f4f1ea;
-}
+      button:hover {
+        background-color: #1a1a1a;
+        color: #f4f1ea;
+      }
     </style>
   </head>
   <body>
