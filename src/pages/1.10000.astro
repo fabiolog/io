@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 // Importa il layout di base (se ne hai uno, altrimenti puoi ometterlo)
 // import BaseLayout from '../layouts/BaseLayout.astro';
 ---
@@ -10,20 +12,7 @@
     <title>Scala 1:10000 - Landing Page</title>
     <style>
 
-    @font-face {
-        font-family: 'Jester';
-        src: url('/io/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype'); /* public come se non esistesse */
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-    @font-face {
-        font-family: 'Inter';
-        src: url('/io/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
+
   
 
       body {
@@ -46,11 +35,10 @@
         }
 
       img {
-        width: 50%; /* Regola la larghezza dell'immagine */
-        max-width: 600px; /* Imposta una larghezza massima */
-        height: auto;
-        opacity: 0; /* Inizialmente trasparente */
-        animation: fade-in 2s ease-in-out forwards; /* Effetto fade-in */
+
+        height: auto; /* NO NO NO */ 
+        opacity: 0; /* Inizialmente trasparente  - spostare nella classe in global */ 
+        animation: fade-in 2s ease-in-out forwards; /* Effetto fade-in  - spostare nella classe in global*/
       }
 
       @keyframes fade-in {
@@ -66,7 +54,7 @@
       .timeline-container {
         margin-top: 2rem;
         width: 80%;
-        max-width: 900px;
+        max-width: 1000px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -101,7 +89,7 @@
         color: #444;
         text-align: center;
         line-height: 1.7;
-        max-width: 900px;
+        max-width: 1000px;
       }
 
       button {
@@ -125,17 +113,39 @@
     </style>
   </head>
   <body>
+
+<a href="/io/index" class="back-button" aria-label="Torna alla landing page">
+  <div class="icon-container">
+    {/* Sostituiamo l'SVG con la tua immagine PNG personalizzata */}
+    <img 
+      src="/io/icon/symbol.png"  
+      alt="Icona Torna indietro" 
+      class="back-icon"
+      width="32" 
+      height="32"
+    />
+    <span class="back-text">Torna indietro</span>
+  </div>
+</a>
+
     <h1>Scala 1:10000</h1>
-    <img src="/io/foto/M3.jpg" alt="Foto centrale del progetto" />
+
+
+
+    <img class="main-project-image" src="/io/foto/M3.jpg"  alt="Foto centrale del progetto" />
+
+
     <a href="/io/Presenza"><button>Inizia</button></a>
     <div class="timeline-container">
      <p class="timeline-text">
-     Siamo abituati a misurare il mondo in base alla nostra statura, ai nostri passi, alla nostra capacità di
-occupare lo spazio.<br>
-In Islanda, questa metrica fallisce.<br>
-Qui la natura non dialoga con l’uomo: lo tollera come un rumore di fondo, una distrazione millimetrica.<br>
-SCALA 1:10.000 è un rilievo della nostra sparizione seguendo un percorso mentale che parte dalla palese Presenza, 
-passa per la misura intesa come scala del mondo, per concludersi con l'assenza senza riferimenti</p>
+  Siamo abituati a misurare il mondo in base alla nostra statura, ai nostri passi, alla nostra capacità di occupare lo spazio.<br>
+
+In Islanda, questa metrica fallisce, la natura non dialoga con l’uomo: lo tollera come un rumore di fondo, una distrazione millimetrica. <br>
+Questo non fa che enfatizzare l’enorme sproporzione tra il peso dell’azione dell’uomo sull’ambiente e la rilevanza fisica degli esseri umani.<br>
+Il "peso dell'uomo" sull'ambiente è spesso un peso distruttivo proprio perché non capiamo la scala delle cose che tocchiamo.<br>
+
+<br>
+</p>
   <div class="timeline-labels">
     <span>Presenza</span>
     <span>Misura</span>
@@ -143,10 +153,14 @@ passa per la misura intesa come scala del mondo, per concludersi con l'assenza s
   </div>
   <div class="timeline-line"></div>
   <p class="timeline-text">
-    <b>Qui non c’è epica, non c ’è avventura, non c'è colore.</b><br>
 
-Queste immagini, stampate in originale su carta povera e affisse come manifesti di un cantiere,<br> documentano
-il momento in cui smettiamo di essere protagonisti per diventare, finalmente, irrilevanti.<br> Per certi versi una sorta di liberazione.
+
+Il percorso si sviluppa come una progressiva perdita di aderenza tra lo sguardo umano e la realtà fisica, trasformando il rilievo fotografico 
+in una cronaca della nostra sparizione. Partendo dalla sezione Presenza, dove la scala ridotta ci illude di avere ancora 
+il controllo metrico sul paesaggio, ci addentriamo nella fase di Misura, in cui la figura umana smette di essere 
+protagonista per diventare un'unità di confronto infinitesimale e precaria. Il viaggio si conclude nel vuoto dell'Assenza, 
+uno spazio terminale in cui il distacco dal riferimento antropico è totale e la natura riemerge nella sua immanenza pura,
+ invitandoci a un'umiltà ecologica che riconosce l'esistenza del mondo ben oltre la nostra capacità di abitarlo o definirlo.
   </p>
 </div>
   </body>

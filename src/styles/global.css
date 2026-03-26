@@ -1,0 +1,137 @@
+      @font-face {
+          font-family: 'Jester';
+          src: url('/io/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      @font-face {
+          font-family: 'Inter';
+          src: url('/io/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+  
+      /* La linea gialla (riutilizziamo lo stile) */
+      .timeline-container {
+        margin-top: 60px;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .timeline-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #666;
+      }
+
+      /* Evidenziamo "Presenza" visto che siamo in questa pagina */
+      .timeline-labels span:first-child {
+        color: #1a1a1a;
+        font-weight: bold;
+      }
+
+      .timeline-line {
+        width: 100%;
+        height: 1px;
+        background-color: #ffd700;
+      }
+
+
+.main-project-image {
+  /* Esempio: larghezza massima e centratura */
+  max-width: 600px;
+  width: 50%; /* NO NO NO */ 
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centra l'immagine */
+  
+  /* Se vuoi che l'immagine principale NON pulsi, 
+     assicurati che qui NON ci sia nessuna regola "animation" */
+  transition: opacity 0.5s ease; /* Esempio: un semplice effetto fade al caricamento */
+}
+
+
+/* --- Stili di icona back */
+  .back-button {
+    position: fixed; /* Fisso in alto a sinistra */
+    top: 25px; /* Leggermente più in basso per bilanciare l'immagine */
+    left: 25px;
+    z-index: 1000; /* Sopra tutto (immagini e testi giganti) */
+    text-decoration: none;
+    color: var(--fg-color, #ffd700); /* Colore del testo (default bianco) */
+    transition: opacity 0.3s ease;
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Spazio tra icona PNG e testo Jester */
+    cursor: pointer;
+  }
+
+  /* --- Stili specifici per l'icona PNG (`symbol.png`) --- */
+  .back-icon {
+    display: block;
+    width: 32px; /* Dimensione fissa dell'icona (regolabile) */
+    height: 32px;
+    object-fit: contain; /* Assicura che l'immagine non venga deformata */
+    transition: transform 0.1s ease, filter 0.1s ease; /* Transizioni fluide */
+  }
+
+  /* --- Stili per il testo "Torna indietro" (Invariati) --- */
+  .back-text {
+    font-family: var(--font-jester, 'JetBrainsMono', sans-serif); /* Font Jester */
+    font-size: 14px;
+    font-weight: normal;
+    opacity: 0; /* Nascondi il testo di default */
+    transform: translateX(-10px); /* Sposta a sinistra per l'animazione */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transizione fluida */
+    white-space: nowrap; /* Impedisce al testo di andare a capo */
+  }
+
+  /* --- Effetti HOVER (con Pulsazione e Colore) --- */
+
+  /* Quando il mouse va sopra il container... */
+  .icon-container:hover .back-text {
+    opacity: 1; /* Mostra il testo Jester */
+    transform: translateX(0); /* Riporta il testo in posizione */
+  }
+
+  /* Applica l'animazione pulsante alla tua icona PNG all'hover */
+  .icon-container:hover .back-icon {
+    animation: pulsate-png 0.5s infinite ease-in-out; /* Avvia l'animazione infinita */
+    
+    /* OPZIONALE: Se l'icona è scura, questo la rende bianca all'hover */
+    /* filter: brightness(0) invert(1); */ 
+  }
+
+  /* Definizione dell'animazione "pulsate-png" specifica per l'immagine */
+  @keyframes pulsate-png {
+    0% {
+      transform: scale(1); /* Dimensione originale */
+      opacity: 0.9; /* Leggermente trasparente */
+    }
+    50% {
+      transform: scale(1.15); /* Ingrandisci leggermente (115%) */
+      opacity: 1; /* Completamente opaca al picco */
+    }
+    100% {
+      transform: scale(1); /* Torna alla dimensione originale */
+      opacity: 0.9;
+    }
+  }
+
+  /* --- Regolazioni per Dark Mode (Opzionali) --- */
+  @media (prefers-color-scheme: dark) {
+    .back-button {
+      color:  #ffd700; /* Testo bianco */
+    }
+    /* Se l'icona è scura, forzala bianca in dark mode */
+    /* .back-icon { filter: brightness(0) invert(1); } */
+  }
