@@ -1,10 +1,10 @@
 ---
 // Qui potresti definire i dati delle 4 foto in futuro
 const fotoPresenza = [
-  { src: '/foto/P1.jpg', alt: 'P/1', desc: 'Litli-Hrútur, Fagradalsfjall - 2023', tag: '[00°36’57”N 00°59’34”W]'  },
-  { src: '/foto/P2.jpg', alt: 'P/2', desc: 'Húnaflói / Steingrímsfjörðu - 2020', tag: '[63°00’57”N 19°59’34”W]'  },
-  { src: '/foto/P3.jpg', alt: 'P/3', desc: 'Seljalandsfoss - 2021', tag: '[63°36’57”N 19°59’34”W]' },
-  { src: '/foto/P4.jpg', alt: 'P/4', desc: 'Fjallsarlon - 2020' ,tag: '[63°36’57”N 19°59’34”W]' },
+  { src: '/io/foto/P1.jpg', alt: 'P/1', desc: 'Litli-Hrútur, Fagradalsfjall - 2023', tag: '[00°36’57”N 00°59’34”W]'  },
+  { src: '/io/foto/P2.jpg', alt: 'P/2', desc: 'Húnaflói / Steingrímsfjörðu - 2020', tag: '[63°00’57”N 19°59’34”W]'  },
+  { src: '/io/foto/P3.jpg', alt: 'P/3', desc: 'Seljalandsfoss - 2021', tag: '[63°36’57”N 19°59’34”W]' },
+  { src: '/io/foto/P4.jpg', alt: 'P/4', desc: 'Fjallsarlon - 2020' ,tag: '[63°36’57”N 19°59’34”W]' },
 ];
 ---
 
@@ -12,24 +12,22 @@ const fotoPresenza = [
   <head>
     <meta charset="utf-8" />
     <title>Presenza - Scala 1:10000</title>
-
-
     
     <style>
-@font-face {
-    font-family: 'Jester';
-    src: url('src/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-@font-face {
-    font-family: 'Inter';
-    src: url('src/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+      @font-face {
+          font-family: 'Jester';
+          src: url('/io/fonts/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      @font-face {
+          font-family: 'Inter';
+          src: url('/io/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
   
 
       body {
@@ -139,99 +137,100 @@ const fotoPresenza = [
       }
 
 
-/* stile del testo ghost sullo sfondo*/
-.bg-text-style {
-  position: fixed;
-  top: 80%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Jester', serif; /* Oppure un font molto bold */
-  font-size: 10vw; /* Dimensione enorme basata sulla larghezza dello schermo */
-  color: #dddddd49; 
-  white-space: nowrap;
-  pointer-events: none; /* Importante: il mouse deve "passarci attraverso" */
-  z-index: -1;
-  transition: opacity 0.5s ease;
-  text-transform: uppercase;
-}
-.bg-alt-style {
-    position: fixed;
-    top: 50%;
-    left: 5%; /* Allineato a sinistra con un po' di margine */
-    transform: translateY(-50%);
-    font-family: 'Jester', serif;
-    font-size: 15vw; /* Leggermente più piccolo del tag centrale */
-    color: #ffd700; /* Usiamo il giallo spento con trasparenza */
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: -2; /* Ancora più sotto del tag centrale */
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    text-transform: uppercase;
-  }
+      /* stile del testo ghost sullo sfondo*/
+      .bg-text-style {
+        position: fixed;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Jester', serif; /* Oppure un font molto bold */
+        font-size: 10vw; /* Dimensione enorme basata sulla larghezza dello schermo */
+        color: #dddddd49; 
+        white-space: nowrap;
+        pointer-events: none; /* Importante: il mouse deve "passarci attraverso" */
+        z-index: -1;
+        transition: opacity 0.5s ease;
+        text-transform: uppercase;
+      }
+      .bg-alt-style {
+          position: fixed;
+          top: 50%;
+          left: 5%; /* Allineato a sinistra con un po' di margine */
+          transform: translateY(-50%);
+          font-family: 'Jester', serif;
+          font-size: 15vw; /* Leggermente più piccolo del tag centrale */
+          color: #ffd700; /* Usiamo il giallo spento con trasparenza */
+          white-space: nowrap;
+          pointer-events: none;
+          z-index: -2; /* Ancora più sotto del tag centrale */
+          opacity: 0;
+          transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+          text-transform: uppercase;
+        }
 
 
-/* ... altri stili ... */
+      /* ... altri stili ... */
 
-  .photo-wrapper {
-    position: relative;
-    overflow: hidden;
-    background-color: #eee;
-    /* Impostazioni per il Fade iniziale */
-    opacity: 0;
-    transform: translateY(20px); /* Parte leggermente più in basso */
-    animation: fadeEntrata 0.8s ease-out forwards;
-  }
+        .photo-wrapper {
+          position: relative;
+          overflow: hidden;
+          background-color: #eee;
+          /* Impostazioni per il Fade iniziale */
+          opacity: 0;
+          transform: translateY(20px); /* Parte leggermente più in basso */
+          animation: fadeEntrata 0.8s ease-out forwards;
+        }
 
-  @keyframes fadeEntrata {
-    to {
-      opacity: 1;
-      transform: translateY(0); /* Arriva alla posizione corretta */
-    }
-  }
+        @keyframes fadeEntrata {
+          to {
+            opacity: 1;
+            transform: translateY(0); /* Arriva alla posizione corretta */
+          }
+        }
 
-  /* Mantieni l'effetto hover che abbiamo creato prima */
-  .photo-wrapper:hover img {
-    transform: scale(1.03) rotate(0.5deg);
-  }
+        /* Mantieni l'effetto hover che abbiamo creato prima */
+        .photo-wrapper:hover img {
+          transform: scale(1.03) rotate(0.5deg);
+        }
 
 
     </style>
+
   </head>
+
+
   <body>
-  
-  
-  <div id="bg-text-giant" class="bg-text-style"></div> <!-- blocco ghost per text grigio  sullo sfondo -->
-<div id="bg-alt-left" class="bg-alt-style"></div> <!-- blocco del codice foto sullos fondo-->
+      <div id="bg-text-giant" class="bg-text-style"></div> <!-- blocco ghost per text grigio  sullo sfondo -->
+      <div id="bg-alt-left" class="bg-alt-style"></div> <!-- blocco del codice foto sullos fondo-->
 
     <h1>Presenza</h1>
 
-<div class="grid-container">
-  {fotoPresenza.map((foto, i) => (
-    <div 
-      class="photo-wrapper" 
-      data-tag={foto.tag}
-      style={`animation-delay: ${i * 0.2}s;`} 
-    >
-      <img src={foto.src} alt={foto.alt} />
-      <div class="caption">{foto.desc}</div>
-    </div>
-  ))}
-</div>
-
-    <div class="description-area">
-      <p>Presenza è l’illusione di abitare il luogo. <br>
-</p>
-    </div>
-
-    <div class="timeline-container">
-      <div class="timeline-labels">
-        <span>Presenza</span>
-        <span>Misura</span>
-        <span>Assenza</span>
+      <div class="grid-container">
+        {fotoPresenza.map((foto, i) => (
+          <div 
+            class="photo-wrapper" 
+            data-tag={foto.tag}
+            style={`animation-delay: ${i * 0.2}s;`} 
+          >
+            <img src={foto.src} alt={foto.alt} />
+            <div class="caption">{foto.desc}</div>
+          </div>
+        ))}
       </div>
-      <div class="timeline-line"></div>
-    </div>
+
+      <div class="description-area">
+        <p>Presenza è l’illusione di abitare il luogo. <br>
+          </p>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-labels">
+          <span>Presenza</span>
+          <span>Misura</span>
+          <span>Assenza</span>
+        </div>
+        <div class="timeline-line"></div>
+      </div>
 
 
 <script>
