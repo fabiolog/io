@@ -1,0 +1,222 @@
+---
+import '../styles/global.css';
+
+// Configurazione delle 12 fotografie
+const photos = [
+  { id: 1, src: '/io/foto/M1.jpg', alt: 'Misura 1', infoText: 'Descrizione per la foto 1. Dimensioni e scala.', boxPosition: 'top: 20%; left: 10%;' },
+  { id: 2, src: '/io/foto/M2.jpg', alt: 'Misura 2', infoText: 'Dettaglio tecnico della seconda immagine.', boxPosition: 'bottom: 15%; right: 10%;' },
+  { id: 3, src: '/io/foto/M3.jpg', alt: 'Misura 3', infoText: 'Note dell\'autore sulla composizione.', boxPosition: 'top: 50%; left: 50%; transform: translate(-50%, -50%);' },
+  { id: 4, src: '/io/foto/M4.jpg', alt: 'Misura 4', infoText: 'Testo informativo foto 4...', boxPosition: 'top: 10%; right: 10%;' },
+  { id: 5, src: '/io/foto/M5.jpg', alt: 'Misura 5', infoText: 'Testo informativo foto 5...', boxPosition: 'bottom: 20%; left: 15%;' },
+  { id: 6, src: '/io/foto/M6.jpg', alt: 'Misura 6', infoText: 'Testo informativo foto 6...', boxPosition: 'top: 30%; right: 20%;' },
+  { id: 7, src: '/io/foto/M7.jpg', alt: 'Misura 7', infoText: 'Testo informativo foto 7...', boxPosition: 'bottom: 10%; left: 10%;' },
+  { id: 8, src: '/io/foto/M8.jpg', alt: 'Misura 8', infoText: 'Testo informativo foto 8...', boxPosition: 'top: 15%; left: 25%;' },
+  { id: 9, src: '/io/foto/M9.jpg', alt: 'Misura 9', infoText: 'Testo informativo foto 9...', boxPosition: 'bottom: 30%; right: 15%;' },
+  { id: 10, src: '/io/foto/M10.jpg', alt: 'Misura 10', infoText: 'Testo informativo foto 10...', boxPosition: 'top: 40%; right: 5%;' },
+  { id: 11, src: '/io/foto/M11.jpg', alt: 'Misura 11', infoText: 'Testo informativo foto 11...', boxPosition: 'bottom: 10%; left: 40%;' },
+  { id: 12, src: '/io/foto/M12.jpg', alt: 'Misura 12', infoText: 'Conclusione del percorso di misura.', boxPosition: 'top: 25%; right: 25%;' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misura - Scala 1:10000</title>
+</head>
+<body>
+
+  <a href="/io/Presenza" class="back-button" aria-label="Torna a Presenza">
+    <div class="icon-container">
+      <img src="/io/icon/symbol.png" alt="Indietro" class="back-icon" width="32" height="32" />
+      <span class="back-text">Torna indietro</span>
+    </div>
+  </a>
+
+  <div class="info-button-container" id="info-trigger">
+    <img src="/io/icon/ballab_s.png" alt="Info" class="info-icon" width="32" height="32" />
+  </div>
+
+  <main class="horizontal-slider" id="slider">
+    
+    <section class="slide presentation-slide" id="slide-0">
+ <h1>Misura</h1>
+  
+   
+   
+        <div class="timeline-container">
+        <div class="timeline-labels">
+          <span>Presenza</span>
+          <span>Misura</span>
+          <span>Assenza</span>
+        </div>
+        <div class="timeline-line"></div> 
+      </div>
+       <div class="scroll-instructions">
+          <div class="arrow-hint left"><span></span></div>
+          <div class="mouse-icon"><div class="wheel"></div></div>
+          <div class="arrow-hint right pulsate-horizontal"><span></span></div>
+        </div>
+
+    </section>
+
+    {photos.map((photo) => (
+      <section class="slide" id={`slide-${photo.id}`}>
+        <img src={photo.src} alt={photo.alt} class="fullscreen-image" />
+        <div class="info-box" style={photo.boxPosition}>
+          <p>{photo.infoText}</p>
+        </div>
+      </section>
+    ))}
+  </main>
+
+  <style>
+    body {
+        background-color: #f5f5f5;
+
+        align-items: center;
+        padding: 60px 20px;
+        min-height: 100vh;
+        font-family: sans-serif;
+        margin: 0; padding: 0;
+        overflow: hidden;
+        width: 100vw; height: 100vh;
+    }
+    .timeline-labels {
+      }
+      /* Evidenziamo "Presenza" visto che siamo in questa pagina */
+    .timeline-labels span:nth-child(2) {
+        color: #ffd700;
+        font-weight: bold;
+      }
+    /* Slider con snap orizzontale */
+    .horizontal-slider {
+      display: flex;
+      width: 100vw; height: 100vh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: auto; /* Necessario 'auto' per non bloccare lo script wheel */
+      scrollbar-width: none;
+    }
+    .horizontal-slider::-webkit-scrollbar { display: none; }
+
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .fullscreen-image {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* Presentazione & Timeline */
+    .presentation-slide { background-color: #b1b1b1; flex-direction: column; }
+    .title-jester {
+      font-family: var(--font-jester, 'JetBrainsMono', sans-serif);
+      font-size: clamp(40px, 8vw, 80px);
+      color: var(--yellow-line, #ffde00);
+      margin-bottom: 30px;
+    }
+   
+
+    /* Info Icon & Box */
+    .info-button-container { position: fixed; top: 25px; right: 25px; z-index: 1000; cursor: pointer; }
+    .info-icon { filter: brightness(0) invert(1); transition: transform 0.3s ease; }
+    .info-button-container:hover .info-icon { transform: scale(1.1); }
+
+    .info-box {
+      position: absolute;
+      z-index: 900;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 20px;
+      border-left: 3px solid #ffde00;
+      max-width: 280px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+    .info-box p { margin: 0; font-family: var(--font-jester, sans-serif); font-size: 14px; line-height: 1.6; }
+
+    /* Istruzioni Mouse/Frecce */
+    .scroll-instructions { display: flex; align-items: center; gap: 30px; margin-top: 50px; opacity: 0.6; }
+    .mouse-icon { width: 22px; height: 38px; border: 2px solid #fff; border-radius: 12px; position: relative; }
+    .mouse-icon .wheel { width: 4px; height: 8px; background: #fff; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); border-radius: 2px; animation: scroll-v 1.5s infinite; }
+    .arrow-hint { width: 30px; height: 2px; background: #fff; position: relative; }
+    .arrow-hint.right::after { content: ''; position: absolute; right: 0; top: -4px; width: 10px; height: 10px; border-top: 2px solid #fff; border-right: 2px solid #fff; transform: rotate(45deg); }
+    
+    @keyframes scroll-v { 0% { opacity: 1; transform: translateX(-50%) translateY(0); } 100% { opacity: 0; transform: translateX(-50%) translateY(12px); } }
+    .pulsate-horizontal { animation: pulse-x 1.5s infinite; }
+    @keyframes pulse-x { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
+  </style>
+
+ <script>
+  // Aspetta che tutto l'HTML sia pronto
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('slider');
+    const infoTrigger = document.getElementById('info-trigger');
+
+    // Verifica di sicurezza: procedi solo se gli elementi esistono
+    if (!slider || !infoTrigger) {
+      console.warn("Elementi slider o infoTrigger non trovati nella pagina.");
+      return;
+    }
+
+    // 1. TRADUTTORE ROTELLINA (Verticale -> Orizzontale)
+    slider.addEventListener('wheel', (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        slider.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    // 2. NAVIGAZIONE TASTIERA
+    window.addEventListener('keydown', (e) => {
+      const step = window.innerWidth;
+      if (e.key === 'ArrowRight') slider.scrollLeft += step;
+      if (e.key === 'ArrowLeft') slider.scrollLeft -= step;
+    });
+
+    // 3. GESTIONE BOX INFO DINAMICO
+    function getActiveSlide() {
+      const index = Math.round(slider.scrollLeft / window.innerWidth);
+      // Cerchiamo l'id slide-0, slide-1, ecc.
+      return document.getElementById(`slide-${index}`);
+    }
+
+infoTrigger.addEventListener('mouseenter', () => {
+      const activeSlide = getActiveSlide();
+      if (activeSlide) {
+        // Diciamo a TypeScript: "Guarda, sono sicuro che questo è un HTMLElement"
+        const box = activeSlide.querySelector('.info-box') as HTMLElement;
+        
+        if (box) {
+          box.style.opacity = '1';
+          box.style.visibility = 'visible';
+          box.style.transform = 'translateY(0)';
+        }
+      }
+    });
+
+    infoTrigger.addEventListener('mouseleave', () => {
+      // Usiamo lo stesso trucco per il ciclo di chiusura
+      const allInfoBoxes = document.querySelectorAll('.info-box');
+      allInfoBoxes.forEach(el => {
+        const box = el as HTMLElement; // Cast anche qui
+        box.style.opacity = '0';
+        box.style.visibility = 'hidden';
+        box.style.transform = 'translateY(10px)';
+      });
+    });
+  });
+</script>
+</body>
+</html>
